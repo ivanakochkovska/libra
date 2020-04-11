@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Кориснички профил</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../css/css/assets/css/main.css" />
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        header{
+            background-image: url('static/css/css/02.jpg');
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header  id="header" >
+    <div class="inner">
+        <a href="#" class="image avatar"><img src="../css/css/assets/images/avatar.jpg" alt="" /></a>
+        <h1><strong>Почитуван/а</strong>, <br />
+            добредојдовте на вашиот кориснички профил.<br />
+             </h1>
+    </div>
+
+</header>
+
+<!-- Main -->
+<div id="main" style="width: 750px">
+
+    <!-- One -->
+    <div style="width: 750px">
+    <form autocomplete="off" action="#" th:action="
+			@{/logout}" th:object="${korisnik}" method="get" class="form-signin" role="form">
+
+        <div class="form-group">
+            <div class="">
+                <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b" >Одјави се</button>
+            </div>
+        </div>
+
+    </form>
+    </div>
+</div>
+    <section>
+
+<div id="main" style="width: 750px">
+            <h2>Внесете во "пребарувај" полето име на книга или име на автор
+            </h2><br><br>
+            <form autocomplete="off" action="#" th:action="
+			@{/kniga}"  method="post" class="form-signin" role="form">
+                <h3 class="form-signin-heading"></h3>
+
+
+
+                <div class="form-group">
+                    <div class="">
+                        <input  name="pole" placeholder="Пребарувај" class="form-control"  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Пребарувај</button>
+                    </div>
+                </div>
+            </form>
+        </header>
+        <p>Пополнете ги податоците за книгата што сакате да ја позајмите</p>
+</div>
+        <section id="two">
+<div id=main style="width: 750px" >
+    <div  >
+        <form autocomplete="off" action="#" th:action="
+			@{/profil}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+
+            <div class="form-group">
+                <div class="">
+                    <input  name="ime" placeholder="Име на книга" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input  name="avtor" placeholder="Автор" class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <input  name="sifra" placeholder="ISBN на книга" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Потврди</button>
+                </div>
+            </div>
+            <span th:utext="${successMessage}"></span>
+            <p th:if="${invalid}" style="text-align: justify; ">Внесете точни параметри !</p>
+            <p th:if="${zajmuvanje}" style="text-align: justify; ">Успешно зајмување!</p>
+            <p th:if="${nepostoecka}" style="text-align: justify; ">Нема достапен примерок</p>
+        </form>
+
+
+    </div>
+</div>
+
+    </section>
+
+    <!-- Three -->
+    <section id="three">
+        <div id="main" style="width: 750px">
+        <h2>Историја на позајмени книги </h2>
+        <br><br>
+        <p> Погледнете ја историјата на сите извршени позајмици</p>
+        <form autocomplete="off" action="#" th:action="
+			@{/profilSostojba}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b" >Историја на резервации</button>
+                </div>
+            </div>
+
+        </form>
+        <form autocomplete="off" action="#" th:action="
+			@{/profilAllBooks}" th:object="${korisnik}" method="get" class="form-signin" role="form">
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b" >Прегледај ги сите достапни книги</button>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="row">
+            <div class="col-8 col-12-small">
+                <th:block th:each="rezervacija :${rezervacii}">
+                    <table style="width:800px">
+                <tr>
+                    <td  th:text="${rezervacija.id_kniga}">default</td>
+                    <td th:text="${rezervacija.imeKniga}">defaylt</td>
+                    <td th:text="${rezervacija.avtor}">default</td>
+                    <td th:text="${rezervacija.pocetenDatum}">default</td>
+                    <td th:text="${rezervacija.kraenDatum}">default</td>
+                </tr>
+                    </table>
+                </th:block>
+
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+
+
+
+
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../assets/css/main.css" rel="stylesheet">
+
+        <title>Strata by HTML5 UP</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+
+    <meta charset="UTF-8">
+    <title>Кориснички профил</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark navbar-fixed bg-dark">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <form autocomplete="off" action="#" th:action="
+			@{/logout}" th:object="${korisnik}" method="get" class="form-signin" role="form">
+
+                <div class="form-group">
+                    <div class="">
+                        <button type="submit" class="btn btn-primary btn-block">Одјави се</button>
+                    </div>
+                </div>
+
+            </form>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="rooms.html"></a>
+                </li>
+            </ul>
+
+            <form autocomplete="off" action="#" th:action="
+			@{/kniga}"  method="post" class="form-signin" role="form">
+                <h3 class="form-signin-heading"></h3>
+
+
+
+                <div class="form-group">
+                    <div class="">
+                        <input  name="pole" placeholder="Пребарувај" class="form-control"  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <button type="submit" class="btn btn-primary btn-block">Пребарувај</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+
+        </div>
+    </nav>
+</header>
+
+<h4>Почитуван/а,</h4><br><h4>Добредојдовте на вашиот кориснички профил !</h4>
+
+<br>
+<br>
+
+<h6>Внесете во "пребарувај" полето име на книга или име на автор</h6>
+<div>
+
+</div>
+
+<br><br>
+<h4>Извршете зајмување</h4>
+
+
+
+
+
+<div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+    <form autocomplete="off" action="#" th:action="
+			@{/profil}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+        <h3 class="form-signin-heading"></h3>
+
+
+        <div class="form-group">
+            <div class="">
+                <input type="text" name="ime" placeholder="Име на книга" class="form-control" th:required="true" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <input  name="avtor" placeholder="Автор" class="form-control" th:required="true" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <input  name="sifra" placeholder="ISBN на книга" class="form-control" th:required="true" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <button type="submit" class="btn btn-primary btn-block">Потврди</button>
+            </div>
+        </div>
+        <span th:utext="${successMessage}"></span>
+        <p th:if="${invalid}" style="text-align: justify; padding-left: 50px;">Внесете точни параметри !</p>
+    </form>
+
+
+</div>
+
+
+
+
+<!-- Three -->
+<section id="three">
+    <h2>Историја на позајмени книги </h2>
+    <br><br>
+    <p> Погледнете ја историјата на сите извршени позајмици</p>
+    <form autocomplete="off" action="#" th:action="
+			@{/profil1}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+
+        <div class="form-group">
+            <div class="">
+                <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b" >Историја на резервации</button>
+            </div>
+        </div>
+
+    </form>
+
+</section>
+
+
+
+
+
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.poptrox.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

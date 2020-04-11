@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head style="background-color: #c9615b">
+    <title></title>
+    <!-- link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" /-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: #ededed;">
+<div style="background-color: #c9615b; height: 50px;"></div>
+
+
+<form autocomplete="off" action="#" th:action="
+			@{/adminLogout}" th:object="${korisnik}" method="get" class="form-signin" role="form">
+
+    <div class="form-group">
+        <div class="">
+            <button type="submit" class="btn btn-primary btn-block">Одјави се</button>
+        </div>
+    </div>
+
+</form>
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/updateBook}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="sifra" placeholder="Шифра на книга" class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Ажурирај</button>
+
+                    <p th:if="${invalid}" style="text-align: justify; padding-left: 50px;">Неуспешно ажурирање</p>
+                    <p th:if="${valid}" style="text-align: justify; padding-left: 50px;">Успешно ажурирање</p>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+
+
+    <div class="container-fluid" style="margin-top: 30px;">
+        <h7>Додавање на книга</h7>
+
+        <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+            <center>
+                <img src="../css/css/unnamed.jpg" >
+            </center>
+            <form autocomplete="off" action="#" th:action="
+			@{/deliteBook}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+                <h3 class="form-signin-heading"></h3>
+
+
+                <div class="form-group">
+                    <div class="">
+                        <input type="text" name="sifra" placeholder="Шифра на книга" class="form-control" th:required="true" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Додади</button>
+                        <p th:if="${invalidD}" style="text-align: justify; padding-left: 50px;">Неуспешно додавање</p>
+                        <p th:if="${validD}" style="text-align: justify; padding-left: 50px;">Успешно додавање</p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div class="container-fluid" style="margin-top: 30px;">
+        <h7>Бришење на книга</h7>
+
+        <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+            <center>
+                <img src="../css/css/unnamed.jpg" >
+            </center>
+            <form autocomplete="off" action="#" th:action="
+			@{/deliteBook}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+                <h3 class="form-signin-heading"></h3>
+
+
+                <div class="form-group">
+                    <div class="">
+                        <input type="text" name="sifra" placeholder="Шифра на книга" class="form-control" th:required="true" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="">
+                        <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Избриши</button>
+                        <p th:if="${invalidD}" style="text-align: justify; padding-left: 50px;">Неуспешно бришење</p>
+                        <p th:if="${validD}" style="text-align: justify; padding-left: 50px;">Успешно бришење</p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <h7>Додавање на промоција</h7>
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/addPromotion}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="avtor" placeholder="Автор" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="kniga" placeholder="Книга" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="datum" placeholder="Датум" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="cas" placeholder="Час" class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Додади</button>
+
+                    <p th:if="${validP}" style="text-align: justify; padding-left: 50px;">Успешно додавање</p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <h7>Бришење на промоција</h7>
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/delitePromotion}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="avtor" placeholder="Автор" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="kniga" placeholder="Книга" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="datum" placeholder="Датум" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="cas" placeholder="Час" class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Избриши</button>
+
+                    <p th:if="${validDP}" style="text-align: justify; padding-left: 50px;">Успешно бришење</p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top: 30px;">
+    <h7>Додавање на читална</h7>
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/addR}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="datum" placeholder="Датум" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="vreme" placeholder="Време за читање" class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Додади</button>
+
+                    <p th:if="${validR}" style="text-align: justify; padding-left: 50px;">Успешно додавање</p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <h7>Бришење на читална</h7>
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/deliteR}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="datum" placeholder="Датум" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="vreme" placeholder="Време " class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Избриши</button>
+
+                    <p th:if="${validDR}" style="text-align: justify; padding-left: 50px;">Успешно бришење</p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<div class="container-fluid" style="margin-top: 30px;">
+    <h7>Додавање на коктел забава</h7>
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/addZabava}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="datum" placeholder="Датум" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="vreme" placeholder="Време " class="form-control" th:required="true" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="gostin" placeholder="Име на специјален гостин " class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Додади</button>
+
+                    <p th:if="${validZ}" style="text-align: justify; padding-left: 50px;">Успешно додавање</p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <h7>Бришење на коктел забава</h7>
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+        <center>
+            <img src="../css/css/unnamed.jpg" >
+        </center>
+        <form autocomplete="off" action="#" th:action="
+			@{/addZabava}" th:object="${korisnik}" method="post" class="form-signin" role="form">
+            <h3 class="form-signin-heading"></h3>
+
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="datum" placeholder="Датум" class="form-control" th:required="true" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="vreme" placeholder="Време " class="form-control" th:required="true" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="gostin" placeholder="Име на специјален гостин " class="form-control" th:required="true" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #c9615b">Избриши</button>
+
+                    <p th:if="${validDZ}" style="text-align: justify; padding-left: 50px;">Успешно бришење</p>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

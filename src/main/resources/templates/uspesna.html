@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:https="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-8 col-12-small">
+        <th:block th:each="rezervacija :${rezervacii}">
+            <table style="width:1200px">
+                <tr>
+                    <td  th:text="${rezervacija.id_kniga}">default</td>
+                    <td th:text="${rezervacija.imeKniga}">defaylt</td>
+                    <td th:text="${rezervacija.avtor}">default</td>
+                    <td th:text="${rezervacija.pocetenDatum}">default</td>
+                    <td th:text="${rezervacija.kraenDatum}">default</td>
+                </tr>
+            </table>
+        </th:block>
+
+    </div>
+
+</div>
+
+</body>
+</html>
