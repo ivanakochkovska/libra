@@ -89,10 +89,72 @@ public class AdminController {
             return b.getIme();
 
 
-
-
     }
 
+    @RequestMapping(value="/updateUserAdmin", method=RequestMethod.GET)
+    public ModelAndView updateUserAdmin(@RequestParam(name="ime")String ime, @RequestParam(name="prezime")String prezime,
+                                        @RequestParam(name="korisnickoime")String korisnickoime, @RequestParam(name="id")int id, @RequestParam(name="lozinka")String lozinka)
+    {
+        Korisnik korisnik=null;
+        List<Korisnik> users=korisnikRepository.findAll();
+        for(int i=0;i<users.size();i++){
+            if(users.get(i).getId()==id){
+                korisnik=users.get(i);
+                korisnikRepository.delete(korisnik);
+                break;
+            }
+        }
+        System.out.println(ime);
+        System.out.println(prezime);
+        Korisnik newUser=new Korisnik(0,ime, prezime, korisnickoime, lozinka);
+        korisnikRepository.save(newUser);
+         return new ModelAndView("redirect:http://localhost:3000");
+    }
+
+
+    @RequestMapping(value="/updateReservationAdmin", method=RequestMethod.GET)
+    public ModelAndView updateUserAdmin(@RequestParam(name="sifraRez")int sifraRez, @RequestParam(name="sifraKor")int sifraKor,
+                                        @RequestParam(name="sifraKniga")String sifraKniga, @RequestParam(name="imeKniga")String imeKniga, @RequestParam(name="avtorKniga")String avtorKniga,
+                                        @RequestParam(name="startt")String start, @RequestParam(name="endd")String end)
+    {
+        Rezervacija rezervacija=null;
+        List<Rezervacija> rezervacijaList=rezervacijaRepository.findAll();
+        for(int i=0;i<rezervacijaList.size();i++){
+            if(rezervacijaList.get(i).getId()==sifraRez){
+                rezervacija=rezervacijaList.get(i);
+                rezervacijaRepository.delete(rezervacija);
+                break;
+            }
+        }
+        System.out.println(avtorKniga);
+
+        Rezervacija newReservation=new Rezervacija(0,sifraKor,sifraKniga,imeKniga,avtorKniga,start,end);
+        rezervacijaRepository.save(newReservation);
+
+        return new ModelAndView("redirect:http://localhost:3000");
+    }
+
+    @RequestMapping(value="/updateBookAdmin", method=RequestMethod.GET)
+    public ModelAndView updateUserAdmin(
+                                        @RequestParam(name="sifraKniga")String sifraKniga, @RequestParam(name="imeKniga")String imeKniga, @RequestParam(name="avtorKniga")String avtorKniga,
+                                        @RequestParam(name="kapacitet")int kapacitet, @RequestParam(name="opis")String opis, @RequestParam(name = "slika")String slika)
+    {
+        Kniga kniga=null;
+        List<Kniga> knigaList= (List<Kniga>) knigaRepository.findAll();
+        for(int i=0;i<knigaList.size();i++){
+            if(knigaList.get(i).getId().equals(sifraKniga)){
+                kniga=knigaList.get(i);
+                knigaRepository.delete(kniga);
+                break;
+            }
+        }
+
+        Kniga newBook=new Kniga(sifraKniga,avtorKniga,imeKniga,opis,true,slika);
+        newBook.setKapacitet(kapacitet);
+        knigaRepository.save(newBook);
+
+        return new ModelAndView("redirect:http://localhost:3000");
+    }
 
     @RequestMapping(value = "/deliteBook", method = RequestMethod.POST)
     @ResponseBody
@@ -246,6 +308,62 @@ public class AdminController {
         session.removeAttribute("admin");
         session.invalidate();
         return new ModelAndView("redirect:/");
+
+    }
+
+    @RequestMapping(value="/deleteBookAdmin", method=RequestMethod.GET)
+    public ModelAndView deleteBookAdmin(@RequestParam(name="sifra") String sifra){
+        List<Kniga> knigaList = (List<Kniga>) knigaRepository.findAll();
+//        Optional<Kniga> book1 = knigaRepository.findById(sifra);
+//        Kniga b = book1.get();
+        Kniga b=null;
+        for(int i=0;i<knigaList.size();i++){
+            if(knigaList.get(i).getIme().equals(sifra)){
+                b=knigaList.get(i);
+                break;
+            }
+        }
+        knigaRepository.delete(b);
+        return new ModelAndView("redirect:http://localhost:3000");
+        //return new ModelAndView("index");
+
+    }
+
+
+    @RequestMapping(value="/deleteUserAdmin", method=RequestMethod.GET)
+    public ModelAndView deleteBookUser(@RequestParam(name="sifra") String sifra){
+        List<Korisnik> korisniks = (List<Korisnik>) korisnikRepository.findAll();
+//        Optional<Kniga> book1 = knigaRepository.findById(sifra);
+//        Kniga b = book1.get();
+        Korisnik b=null;
+        for(int i=0;i<korisniks.size();i++){
+            if(korisniks.get(i).getKorisnickoIme().equals(sifra)){
+                b=korisniks.get(i);
+                break;
+            }
+        }
+        korisnikRepository.delete(b);
+        return new ModelAndView("redirect:http://localhost:3000");
+        //return new ModelAndView("index");
+
+    }
+
+
+    @RequestMapping(value="/deleteReservationAdmin", method=RequestMethod.GET)
+    public ModelAndView deleteReservationUser(@RequestParam(name="sifra") int sifra){
+        List<Rezervacija> korisniks = (List<Rezervacija>) rezervacijaRepository.findAll();
+//        Optional<Kniga> book1 = knigaRepository.findById(sifra);
+//        Kniga b = book1.get();
+        Rezervacija b=null;
+        for(int i=0;i<korisniks.size();i++){
+            if(korisniks.get(i).getId_korisnik()==sifra){
+                b=korisniks.get(i);
+                break;
+            }
+        }
+        rezervacijaRepository.delete(b);
+        return new ModelAndView("redirect:http://localhost:3000");
+        //return new ModelAndView("index");
 
     }
 
